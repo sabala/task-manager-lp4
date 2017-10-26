@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/tasks';
+var dbURI = 'mongodb://localhost/tarefas';
 mongoose.Promise = global.Promise;
 
 if (process.env.NODE_ENV === 'production') {
