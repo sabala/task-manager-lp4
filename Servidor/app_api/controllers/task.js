@@ -67,14 +67,16 @@ module.exports.completarTarefa = function (req, res) {
 
 
 module.exports.editarTarefa = function (req, res) {
-    var _id = req.params.id;
-    Task.findOne({"_id" : id}).exec()
-    .then( function (tasks) {
-        res.json(tasks);
-    },
-    function (error) {
-        res.status(500).json(error);
-    });
+    Task.findById({
+        '_id': id
+    }).exec()
+    .then(
+        function (tasks) {
+            res.json(tasks);
+        },
+        function (error) {
+            res.status(500).json(error);
+        });
 };
 
 module.exports.atualizarTarefa = function (req, res){

@@ -72,7 +72,7 @@
               <td>{{ t.tarefa }}</td>
               <td>
                 <i class="fa fa-calendar"></i>{{ t.data | date: 'dd.MM.yyyy'}}</td>
-              <td>{{ t.prioridade }}</td>
+              <td>{{ t.prioridade | prioridadeFiltro }}</td>
               <!-- BOTÕES DE AÇÕES -->
               <td>
                 <a href="#" class="label label-success" role="button" ng-click="completarTarefa(t.feita)">

@@ -24,6 +24,16 @@ app.controller('taskController', function ($scope, $http) {
             prioridade: $scope.prioridade,
             feita: false
         };
+        $scope.prioridade.filter('prioridadeFiltro'), function(){
+            return function(input){
+                if (input === 1) return 'URGENTE'
+                if (input === 2) return 'ALTA'
+                if (input === 3) return 'MÉDIA'
+                if (input === 4) return 'BAIXA'
+
+                return 'Nula'
+            }
+        }
         $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
             .then(
                 function (sucesso) {
@@ -37,7 +47,6 @@ app.controller('taskController', function ($scope, $http) {
     $scope.editarTarefa = function(id) {
         $http.get('/tarefas/' + id)
             .success(function(data) {
-                $scope.formTask = data;
                 console.log(data);
             })
             .error(function(data) {

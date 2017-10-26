@@ -3,15 +3,15 @@ var router = express.Router();
 var taskController = require('../controllers/task');
 
 // GET
-router.get('/tasks', taskController.buscaTodas);
-router.get('/tasks/tarefasCompletas', taskController.tarefasCompletas);
-router.get('/tasks/:id', taskController.editarTarefa);
+router.get('/tarefas', taskController.buscaTodas);
+router.get('/tarefas/tarefasCompletas', taskController.tarefasCompletas);
+router.get('/tarefas/:id', taskController.editarTarefa);
 // POST
-router.post('/tasks', taskController.adicionarNova);
+router.post('/tarefas', taskController.adicionarNova);
 // PUT
-router.put('/tasks/:id', taskController.atualizarTarefa);
-router.put('/tasks/completarTarefa/:feita', taskController.completarTarefa);
+router.put('/tarefas/:id', taskController.atualizarTarefa);
+router.put('/tarefas/completarTarefa/:feita', taskController.completarTarefa);
 // DELETE
-router.delete('/tasks/:id', taskController.excluirTarefa);
+router.delete('/tarefas/:id', taskController.excluirTarefa);
 
 module.exports = router;

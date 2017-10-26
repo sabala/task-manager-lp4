@@ -7,6 +7,7 @@ var task = new mongoose.Schema({
     },
     data: {
         type: Date,
+        default: Date.now,
         required: true
     },
     prioridade: {
