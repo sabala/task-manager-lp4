@@ -1,0 +1,278 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/* HTML (HEAD + BODY) / ELEMENTOS  */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background: #b1f6cb;
+  background-image: url(1.png);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 20px 0;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  clear: both;
+  overflow: hidden;
+}
+
+.half {
+  width: 50%;
+  float: left;
+}
+
+.content {
+  background: #fff;
+}
+
+
+/* LOGO TÍTULO */
+
+.title {
+  color: #111;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+}
+
+.tagline {
+  margin-top: -10px;
+  text-align: center;
+  padding: 5px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #777;
+}
+
+
+/* inputs */
+
+.inputContainer {
+  height: 60px;
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+  overflow: hidden;
+}
+
+.inputContainer.last {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+
+.inputContainer.half.last.right {
+  border-left: 1px solid #efefef;
+}
+
+input[type="date"],
+input[type="text"],
+select {
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  position: relative;
+  top: 0;
+  vertical-align: middle;
+  display: inline-block;
+  border: none;
+  border-radius: none;
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+input[type="date"] {
+  cursor: pointer;
+}
+
+input[type="date"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  background: #ecf0f1;
+}
+
+::-webkit-input-placeholder {
+  color: lightgrey;
+  font-weight: normal;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+::-moz-placeholder {
+  color: lightgrey;
+  font-weight: normal;
+  transition: all 0.3s;
+}
+
+::-ms-input-placeholder {
+  color: lightgrey;
+  font-weight: normal;
+  transition: all 0.3s;
+}
+
+input:-moz-placeholder {
+  color: lightgrey;
+  font-weight: normal;
+  transition: all 0.3s;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: #95a5a6;
+  font-weight: bold;
+}
+
+input:focus::-moz-input-placeholder {
+  color: #95a5a6;
+  font-weight: bold;
+}
+
+label {
+  padding: 5px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #777;
+  display: block;
+  position: absolute;
+}
+
+
+/* task styles */
+
+.taskList {
+  list-style: none;
+  padding: 0 20px;
+}
+
+.taskItem {
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 15px 0;
+  color: #777;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.taskList .taskItem:nth-child(even) {
+  background: #fcfcfc;
+}
+
+.fa-calendar {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+[class*='category-'] {
+  display: inline-block;
+  font-size: 10px;
+  background: #444;
+  vertical-align: middle;
+  color: #fff;
+  padding: 10px;
+  width: 75px;
+  text-align: center;
+  border-radius: 2px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+  width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+  text-align: left;
+}
+
+.modal-body .form-horizontal .col-sm-offset-2 {
+  margin-left: 15px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 980px) {
+  
+    #pagewrap {
+      width: 94%;
+    }
+    #content {
+      width: 65%;
+    }
+    #sidebar {
+      width: 30%;
+    }
+  
+}
+
+@media screen and (max-width: 700px) {
+  
+    #content {
+      width: auto;
+      float: none;
+    }
+    #sidebar {
+      width: auto;
+      float: none;
+    }
+  
+}
+
+@media screen and (max-width: 480px) {
+  
+    #header {
+      height: auto;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    #sidebar {
+      display: none;
+    }
+  
+}

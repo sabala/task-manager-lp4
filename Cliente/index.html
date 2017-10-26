@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Manter Escala -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Angular / Tasks Controllers / jQuery -->
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/controllers/tasks.js"></script>
+  <script src="js/jquery/jquery-3.2.1.min.js"></script>
+  <!-- Styles Pessoal / Bootstrap -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <!-- Bootstrap.js -->
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+
+  <title>Task Manager - IFMS</title>
+</head>
+
+<body>
+  <!-- TASK -->
+  <div ng-app="TaskManager" ng-controller="taskController">
+    <!-- CONTAINER -->
+    <div class="container">
+      <div class="content">
+        <!-- ALERTAS -->
+        <p ng-show="erro" class="alert alert-warning">{{erro}}</p>
+        <p ng-show="sucesso" class="alert alert-success">{{sucesso}}</p>
+        <!-- TÍTULO CENTRO -->
+        <h1 class="title">Task Manager</h1>
+        <p class="tagline">Instituto Federal de Mato Grosso do Sul</p>
+        <!-- FORMULÁRIO -->
+        <form ng-submit="adicionarNova()">
+          <div class="inputContainer">
+            <input type="text" id="tarefa" class="form-control" placeholder="O que preciso fazer?" ng-model="tarefa" required="required">
+          </div>
+          <div class="inputContainer half last right">
+            <input type="date" id="data" class="form-control" ng-model="data" required="required">
+          </div>
+          <div class="inputContainer half last">
+            <select name="prioridade" id="prioridade" type="text" ng-model="prioridade" class="required">
+              <option value="" disabled="disabled">DEFINA UMA PRIORIDADE</option>
+              <option value="1">URGENTE</option>
+              <option value="2">ALTA</option>
+              <option value="3">MÉDIA</option>
+              <option value="4">BAIXA</option>
+            </select>
+          </div>
+          <!-- BOTÕES -->
+          <div class="row">
+            <input class="btn btn-primary" type="submit" value="ADICIONAR" />
+            <input class="btn btn-default" type="reset" value="LIMPAR DADOS" />
+            <hr>
+          </div>
+        </form>
+        <!-- FIM DO FORMULÁRIO -->
+        <!-- TABELA -->
+        <div class="row">
+          <table class="table">
+            <tr>
+              <th class="taskItem">DESCRIÇÃO</th>
+              <th class="taskItem">DATA</th>
+              <th class="taskItem">PRIORIDADE</th>
+              <th class="taskItem">FUNÇÕES</th>
+            </tr>
+            <!-- DADOS DO BANCO -->
+            <tr ng-repeat="t in tasks">
+              <td>{{ t.tarefa }}</td>
+              <td>
+                <i class="fa fa-calendar"></i>{{ t.data | date: 'dd.MM.yyyy'}}</td>
+              <td>{{ t.prioridade }}</td>
+              <!-- BOTÕES DE AÇÕES -->
+              <td>
+                <a href="#" class="label label-success" role="button" ng-click="completarTarefa(t.feita)">
+                  <i class="fa fa-check"></i> FINALIZAR</a>
+                <a href="#" class="label label-warning" data-toggle="modal" data-target="#janelaModal" ng-click="editarTarefa(t._id)">
+                  <i class="fa fa-undo"></i> EDITAR</a>
+                <div class="modal fade" id="janelaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span aria-hidden="true">&times;</span>
+                          <span class="sr-only">Fechar</span>
+                        </button>
+                        <h2 class="modal-title" id="myModalLabel">ATUALIZAR TAREFA</h2>
+                      </div>
+                      <div class="modal-body">
+                        <p ng-show="erro" class="alert alert-danger">{{erro}}</p>
+                        <p ng-show="sucesso" class="alert alert-success">{{sucesso}}</p>
+
+                        <form class="form-horizontal" role="form">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="tarefa">Tarefa</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="tarefa" placeholder="O que preciso fazer?" ng-model="tarefa" required="required"
+                              />
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="data">Defina Uma Data</label>
+                            <div class="col-sm-10">
+                              <input type="date" class="form-control" id="data" ng-model="data" required="required" />
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="prioridade">Grau de Prioridade</label>
+                            <div class="col-sm-10">
+                              <select name="prioridade" id="prioridade" type="text" ng-model="prioridade" class="required">
+                                <option value="" disabled="disabled">DEFINA UMA PRIORIDADE</option>
+                                <option value="1">URGENTE</option>
+                                <option value="2">ALTA</option>
+                                <option value="3">MÉDIA</option>
+                                <option value="4">BAIXA</option>
+                              </select>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">FECHAR</button>
+                        <input class="btn btn-default" type="reset" value="LIMPAR DADOS" />
+                        <input class="btn btn-primary" type="submit" value="ATUALIZAR" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="#" class="label label-danger" role="button" ng-click="excluirTarefa(t._id)">
+                  <i class="fa fa-trash"></i> EXCLUIR</a>
+              </td>
+            </tr>
+            <!-- FIM DOS BOTÕES DE AÇÕES -->
+          </table>
+          <!-- FIM DA TABELA DAS TAREFAS ABERTAS -->
+        </div>
+        <!-- FIM DA DIV DO ROW DA TABELA -->
+      </div>
+      <!-- FIM DO CONTENT -->
+    </div>
+    <!-- FIM DO CONTAINER -->
+  </div>
+  <!-- FIM DOS NGAPP TASK MANAGER -->
+</body>
+
+</html>
