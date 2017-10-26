@@ -1,4 +1,4 @@
-# task-manager-lp4
+# Task Manager - IFMS
 <p>
 Trabalho Interdisciplinar que envolve as seguintes disciplinas: Linguaguem de Programação IV e WebServices. :+1: <br />
 <br />
