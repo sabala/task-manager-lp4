@@ -5,18 +5,20 @@ var task = new mongoose.Schema({
         type: String,
         required: true
     },
+    descricao: {
+        type: String
+    },
     data: {
         type: Date,
         default: Date.now,
         required: true
     },
     prioridade: {
-        type: String,
+        type: Number,
         required: true
     },
     feita: {
-        type: Boolean,
-        required: true
+        type: Boolean
     }
 });
 

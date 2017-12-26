@@ -1,13 +1,24 @@
 var app = angular.module('TaskManager', []);
 
+app.filter('prioridadeFiltro'), function () {
+    return function (input) {
+        if (input == 1) return 'URGENTE'
+        if (input == 2) return 'ALTA'
+        if (input == 3) return 'MÉDIA'
+        if (input == 4) return 'BAIXA'
+
+        return 'Nula'
+    }
+};
 app.controller('taskController', function ($scope, $http) {
     var carregaTarefas = function () {
         $http.get("http://localhost:3000/tarefas")
             .then(function (response) {
                 $scope.tasks = response.data;
+                console.log($scope.tasks);
             });
     };
-    
+
     carregaTarefas();
 
     $scope.tarefasCompletas = function () {
@@ -20,20 +31,11 @@ app.controller('taskController', function ($scope, $http) {
     $scope.adicionarNova = function () {
         var dados = {
             tarefa: $scope.tarefa,
+            descricao: $scope.descricao,
             data: $scope.data,
             prioridade: $scope.prioridade,
             feita: false
         };
-        $scope.prioridade.filter('prioridadeFiltro'), function(){
-            return function(input){
-                if (input === 1) return 'URGENTE'
-                if (input === 2) return 'ALTA'
-                if (input === 3) return 'MÉDIA'
-                if (input === 4) return 'BAIXA'
-
-                return 'Nula'
-            }
-        }
         $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
             .then(
                 function (sucesso) {
@@ -44,22 +46,22 @@ app.controller('taskController', function ($scope, $http) {
                 });
     }
 
-    $scope.editarTarefa = function(id) {
+    /* $scope.editarTarefa = function (id) {
         $http.get('/tarefas/' + id)
-            .success(function(data) {
+            .success(function (data) {
                 console.log(data);
             })
-            .error(function(data) {
+            .error(function (data) {
                 console.log('Error: ' + data);
             });
     };
 
-    $scope.atualizarTarefa = function() {        
+    $scope.atualizarTarefa = function () {
         $http.put('/tarefas/' + $scope.formTask._id, $scope.formTask)
-        .success(function(response){
-            refresh();
-        });
-    };
+            .success(function (response) {
+                refresh();
+            });
+    }; */
 
     $scope.completarTarefa = function (feita) {
         $http.put("http://localhost:3000/tarefas/completarTarefa/" + feita)

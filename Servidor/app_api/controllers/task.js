@@ -66,7 +66,7 @@ module.exports.completarTarefa = function (req, res) {
 };
 
 
-module.exports.editarTarefa = function (req, res) {
+/*module.exports.editarTarefa = function (req, res) {
     Task.findById({
         '_id': id
     }).exec()
@@ -89,7 +89,7 @@ module.exports.atualizarTarefa = function (req, res){
     function (error) {
         res.status(500).json(error);
     });
-};
+};*/
 
 module.exports.excluirTarefa = function (req, res) {
     var _id = req.params.id;

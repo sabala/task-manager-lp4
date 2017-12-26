@@ -36,7 +36,10 @@
         <!-- FORMULÁRIO -->
         <form ng-submit="adicionarNova()">
           <div class="inputContainer">
-            <input type="text" id="tarefa" class="form-control" placeholder="O que preciso fazer?" ng-model="tarefa" required="required">
+            <input type="text" id="tarefa" maxlength="20" class="form-control" placeholder="O que preciso fazer?" ng-model="tarefa" required="required">
+          </div>
+          <div class="inputContainer">
+            <input type="text" id="descricao" maxlength="40" class="form-control" placeholder="Detalhe sua tarefa" ng-model="descricao">
           </div>
           <div class="inputContainer half last right">
             <input type="date" id="data" class="form-control" ng-model="data" required="required">
@@ -62,6 +65,7 @@
         <div class="row">
           <table class="table">
             <tr>
+              <th class="taskItem">TAREFA</th>
               <th class="taskItem">DESCRIÇÃO</th>
               <th class="taskItem">DATA</th>
               <th class="taskItem">PRIORIDADE</th>
@@ -70,9 +74,10 @@
             <!-- DADOS DO BANCO -->
             <tr ng-repeat="t in tasks">
               <td>{{ t.tarefa }}</td>
+              <td>{{ t.descricao }}</td>
               <td>
                 <i class="fa fa-calendar"></i>{{ t.data | date: 'dd.MM.yyyy'}}</td>
-              <td>{{ t.prioridade | prioridadeFiltro }}</td>
+              <td>{{ t.prioridade }}</td>
               <!-- BOTÕES DE AÇÕES -->
               <td>
                 <a href="#" class="label label-success" role="button" ng-click="completarTarefa(t.feita)">
@@ -97,14 +102,19 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="tarefa">Tarefa</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="tarefa" placeholder="O que preciso fazer?" ng-model="tarefa" required="required"
-                              />
+                              <input type="text" class="form-control" id="tarefa" maxlength="20" placeholder="O que preciso fazer?" ng-model="tarefa" required="required"/>
                             </div>
                           </div>
                           <div class="form-group">
+                              <label class="col-sm-2 control-label" for="tarefa">Descrição</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="descricao" maxlength="40" placeholder="Detalhe sua tarefa" ng-model="descricao"/>
+                              </div>
+                            </div>
+                          <div class="form-group">
                             <label class="col-sm-2 control-label" for="data">Defina Uma Data</label>
                             <div class="col-sm-10">
-                              <input type="date" class="form-control" id="data" ng-model="data" required="required" />
+                              <input type="date" class="form-control" id="data" ng-model="data" required="required"/>
                             </div>
                           </div>
                           <div class="form-group">
